@@ -12,7 +12,10 @@ def score_text(text, dictionary):
         return 0
     
     cleaned = [re.sub(r'[^a-z]' , "", word) for word in words]
+    cleaned = [word for word in cleaned if word]
+
+    if len(cleaned) == 0:
+        return 0
 
     valid_words = sum(1 for word in cleaned if word in dictionary)
-
     return valid_words / len(cleaned)
